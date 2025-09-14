@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "urls")
-public class URL {
+public class Url {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class URL {
 
     private String shortCode;
 
-    private String longURL;
+    private String longUrl;
 
     private LocalDateTime createdAt;
 
@@ -30,5 +30,12 @@ public class URL {
     @PostPersist
     public void onPostPersist(){
         this.shortCode = Base62Algorithm.encode(this.id);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
     }
 }
