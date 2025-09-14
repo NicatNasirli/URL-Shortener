@@ -1,5 +1,8 @@
 package personal.urlshortener.utilities;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Base62Algorithm {
     private static String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 

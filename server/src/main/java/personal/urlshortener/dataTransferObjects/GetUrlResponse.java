@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateURLResponse {
+public class GetUrlResponse {
     private Long id;
 
     private String shortCode;
 
-    private String longURL;
+    private String longUrl;
 
     private LocalDateTime createdAt;
 
