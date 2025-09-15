@@ -1,0 +1,12 @@
+# Build outputs
+server/target/
+
+# IDE settings
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Spring Boot configs
+server/src/main/resources/application.properties

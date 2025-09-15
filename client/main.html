@@ -33,7 +33,7 @@
             })
             .then(response => {
                 if (!response.ok) throw new Error("Error shortening URL");
-                return response.text(); // <-- backend sends the short code here
+                return response.text(); 
             })
             .then(shortCode => {
                 const shortUrl = `http://localhost:8080/shorturl.az/${shortCode}`;

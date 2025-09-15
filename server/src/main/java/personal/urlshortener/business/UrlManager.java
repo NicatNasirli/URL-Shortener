@@ -1,25 +1,25 @@
 package personal.urlshortener.business;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import personal.urlshortener.dataAccess.UrlRepository;
+import personal.urlshortener.dataTransferObjects.GetUrlResponse;
 import personal.urlshortener.entities.MyUrl;
 import personal.urlshortener.utilities.Base62Algorithm;
+import personal.urlshortener.utilities.Mapper;
 
 import java.util.Optional;
 
-@Component
-//@AllArgsConstructor
+
+@Service
 public class UrlManager implements UrlService {
+
+    private final UrlRepository urlRepository;
 
     @Autowired
     public UrlManager(UrlRepository urlRepository) {
         this.urlRepository = urlRepository;
     }
-
-    private final UrlRepository urlRepository;
 
     @Override
     public String  add(String longUrl) {
@@ -50,6 +50,17 @@ public class UrlManager implements UrlService {
         }else return null;
     }
 
+    @Override
+    public void delete(String shortCode) {
+        this.urlRepository.delete(
+                this.urlRepository.findByShortCode(shortCode).get());
+    }
+
+    @Override
+    public GetUrlResponse getUrlByShortCode(String shortCode) {
+        return Mapper.createURLResponse(this.urlRepository.findByShortCode(shortCode).get());
+    }
 
 
 }
+
